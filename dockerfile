@@ -1,15 +1,8 @@
-# Base WORKDIR => /
 FROM openjdk:24-jdk-slim
 WORKDIR /app
 
-# Define build-time argument
-ARG imageName
-
-# Set environment variable from ARG
-ENV IMAGE_NAME=${imageName}
-
 # Copy Jar from build context to /app directory in the image
-COPY target/${IMAGE_NAME}.jar ${IMAGE_NAME}.jar
+COPY target/candidate_service-0.0.1-SNAPSHOT.jar candidate_service-0.0.1-SNAPSHOT.jar
 
 # Set the entry point
-ENTRYPOINT ["sh", "-c", "java -jar /app/${IMAGE_NAME}.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar /app/candidate_service-0.0.1-SNAPSHOT.jar"]
